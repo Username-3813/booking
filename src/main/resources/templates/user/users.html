@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Список пользователей</h1>
+        <div class="button-group">
+            <a href="/users/add" class="btn">Добавить пользователя</a>
+            <a href="/" class="btn">На главную</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Эл. почта</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.surname}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td class="table-actions">
+                        <a th:href="|/users/edit/${user.id}|" class="btn btn-edit btn-icon" title="Редактировать">✏️</a>
+                        <a th:href="|/users/delete/${user.id}|" class="btn btn-danger btn-icon" title="Удалить">🗑️</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

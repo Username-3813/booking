@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список адресов</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Список автосервисов</h1>
+        <div class="button-group">
+            <a href="/locations/add" class="btn">Добавить автосервис</a>
+            <a href="/" class="btn">На главную</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Город</th>
+                    <th>Улица</th>
+                    <th>№ Дома</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="location : ${locations}">
+                    <td th:text="${location.city}"></td>
+                    <td th:text="${location.street}"></td>
+                    <td th:text="${location.house}"></td>
+                    <td class="table-actions">
+                        <a th:href="|/locations/edit/${location.id}|" class="btn btn-edit btn-icon" title="Редактировать">✏️</a>
+                        <a th:href="|/locations/delete/${location.id}|" class="btn btn-danger btn-icon" title="Удалить">🗑️</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

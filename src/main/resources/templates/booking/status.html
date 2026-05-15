@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статус заявки</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Заявка №<span th:text="${booking.id}"></span></h1>
+        <p>Статус: 
+            <strong>
+                <span th:if="${booking.status.name() == 'CREATED'}">📝 Создана</span>
+                <span th:if="${booking.status.name() == 'PROCESS'}">⚙️ В обработке</span>
+                <span th:if="${booking.status.name() == 'SUCCESS'}">✅ Завершена</span>
+                <span th:if="${booking.status.name() == 'CANCELED'}">❌ Отменена</span>
+            </strong>
+        </p>
+        <p>Услуга: <strong th:text="${booking.item.title}"></strong></p>
+        <p>Адрес: <strong th:text="|${booking.location.city}, ${booking.location.street}, ${booking.location.house}|"></strong></p>
+        <p>Дата: <strong th:text="${booking.date}"></strong></p>
+        <p>Телефон: <strong th:text="${booking.phone}"></strong></p>
+        <p>Подтверждение: 
+            <strong>
+                <span th:if="${booking.approved}">✅ Подтверждено</span>
+                <span th:if="!${booking.approved}">⏳ Ожидает подтверждения</span>
+            </strong>
+        </p>
+        <div class="button-group">
+            <a href="/" class="btn">На главную</a>
+        </div>
+    </div>
+</body>
+</html>

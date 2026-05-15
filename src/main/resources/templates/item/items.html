@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список услуг</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Список услуг</h1>
+        <div class="button-group">
+            <a href="/item/add" class="btn">Добавить услугу</a>
+            <a href="/" class="btn">На главную</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Цена, руб.</th>
+                    <th>Длительность, мин.</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="it : ${items}">
+                    <td th:text="${it.title}"></td>
+                    <td th:text="${it.info}"></td>
+                    <td th:text="${it.price}"></td>
+                    <td th:text="${it.duration}"></td>
+                    <td class="table-actions">
+                        <a th:href="@{/items/edit/{id}(id=${it.id})}" class="btn btn-edit btn-icon" title="Редактировать">✏️</a>
+                        <a th:href="@{/items/delete/{id}(id=${it.id})}" class="btn btn-danger btn-icon" title="Удалить">🗑️</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

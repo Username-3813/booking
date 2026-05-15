@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список заявок</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Список заявок</h1>
+        <table>
+            <a href="/" class="btn">На главную</a>
+            <tr>
+                <th>Номер заявки</th>
+                <th>Статус</th>
+                <th>Услуга</th>
+                <th>Дата</th>
+                <th>Телефон</th>
+                <th>Подтверждение</th>
+                <th>Действия</th>
+            </tr>
+            <tr th:each="order : ${booking}">
+                <td th:text="${order.id}"></td>
+                <td>
+                    <span th:if="${order.status.name() == 'CREATED'}">📝 Создана</span>
+                    <span th:if="${order.status.name() == 'PROCESS'}">⚙️ В обработке</span>
+                    <span th:if="${order.status.name() == 'SUCCESS'}">✅ Завершена</span>
+                    <span th:if="${order.status.name() == 'CANCELED'}">❌ Отменена</span>
+                </td>
+                <td th:text="${order.item.title}"></td>
+                <td th:text="${order.date}"></td>
+                <td th:text="${order.phone}"></td>
+                <td>
+                    <form th:if="${!order.approved}"
+                        th:action="@{/booking/approve/{id}(id=${order.id})}"
+                        method="post">
+                        <button type="submit">Подтвердить</button>
+                    </form>
+
+                    <strong th:if="${order.approved}">✅ Подтверждена</strong>
+                    <strong th:if="${!order.approved}">⏳ Ожидает</strong>
+                </td>
+                <td>
+                    <form th:if="${order.status.name() != 'SUCCESS' and order.status.name() != 'CANCELED'}"
+                        th:action="@{/booking/complete/{id}(id=${order.id})}"
+                        method="post"
+                        onsubmit="return confirm('Завершить заявку?');">
+                        <button type="submit">Завершить</button>
+                    </form>
+                    <span th:if="${order.status.name() == 'SUCCESS'}">✅ Завершена</span>
+                    <span th:if="${order.status.name() == 'CANCELED'}">❌ Отменена</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

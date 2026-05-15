@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление услуги</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Добавление услуги</h1>
+        <form method="post" th:action="@{/items/save}" th:object="${item}">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="title">Название</label>
+                <input id="title" type="text" th:field="*{title}" name="title" placeholder="Название" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Цена, руб.</label>
+                <input id="price" type="number" th:field="*{price}" name="price" placeholder="Цена, руб." min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Длительность, мин.</label>
+                <input id="duration" type="number" th:field="*{duration}" name="duration" placeholder="Длительность, мин." min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="info">Описание</label>
+                <textarea id="info" th:field="*{info}" name="info" placeholder="Описание" rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn">Сохранить</button>
+            <div class="button-group">
+                <a href="/items" class="btn">Вернуться к списку</a>
+                <a href="/" class="btn">На главную</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

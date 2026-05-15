@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на услугу</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+    <h1>Записаться на услугу</h1>
+
+    <form method="post" th:action="@{/booking/save}" th:object="${booking}">
+
+        <label>Услуга</label>
+        <select th:field="*{item.id}" required>
+            <option th:each="item : ${items}"
+                    th:value="${item.id}"
+                    th:text="|${item.title} - ${item.price}руб.|">
+            </option>
+        </select><br>
+
+        <label>Адрес</label>
+        <select th:field="*{location.id}" required>
+            <option th:each="location : ${locations}"
+                    th:value="${location.id}"
+                    th:text="|${location.city}, ${location.street}, ${location.house}|">
+            </option>
+        </select><br>
+
+        <label>Дата</label>
+        <input type="date" th:field="*{date}" required th:min="${minDate}"><br>
+
+        <label>Телефон</label>
+        <input type="text" th:field="*{phone}" placeholder="Номер телефона" required><br>
+
+        <input type="submit" value="Записаться" class="btn">
+        <div class="button-group">
+            <a href="/" class="btn">На главную</a>
+        </div>
+
+    </form>
+    </div>
+</body>
+</html>

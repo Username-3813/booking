@@ -1,0 +1,6 @@
+[0504/231524.463:ERROR:third_party\crashpad\crashpad\util\win\registration_protocol_win.cc:108] CreateFile: Отказано в доступе. (0x5)
+[0504/231645.265:ERROR:third_party\crashpad\crashpad\util\win\registration_protocol_win.cc:108] CreateFile: Отказано в доступе. (0x5)
+[0504/231656.555:ERROR:third_party\crashpad\crashpad\util\win\registration_protocol_win.cc:108] CreateFile: Отказано в доступе. (0x5)
+[0504/232047.253:ERROR:third_party\crashpad\crashpad\util\win\registration_protocol_win.cc:108] CreateFile: Отказано в доступе. (0x5)
+[0504/232202.522:ERROR:third_party\crashpad\crashpad\util\win\registration_protocol_win.cc:108] CreateFile: Отказано в доступе. (0x5)
+[0504/232225.098:ERROR:third_party\crashpad\crashpad\util\win\registration_protocol_win.cc:108] CreateFile: Отказано в доступе. (0x5)
